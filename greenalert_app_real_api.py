@@ -24,12 +24,12 @@ def get_weather_data(lat=24.3083, lon=91.7296):
         st.error(f"⚠️ API Error {response.status_code}: {response.text}")
         return None, None, None
 
-# Set up page layout and background
+# Set up page layout and background with GitHub image link
 st.set_page_config(page_title="GreenAlert", page_icon="🌿", layout="wide")
 st.markdown("""
     <style>
         .reportview-container {
-            background-image: url("green_bg.jpg");
+            background-image: url("https://raw.githubusercontent.com/your-username/your-repository-name/main/background.jpg");
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -77,10 +77,4 @@ if st.button("🌐 Fetch Real-Time Weather (Sreemangal)", key="fetch_weather", h
         st.session_state.temp_input = temp
         st.session_state.moisture_input = humidity
         st.session_state.rain_input = rainfall
-        st.success(f"📍 Sreemangal Weather: Temp {temp}°C, Rainfall {rainfall}mm, Humidity {humidity}%")
-
-# AI Prediction Button
-if st.button("🧠 Get AI Advice", key="ai_advice", help="Get AI-based action for farming"):
-    result = predict_action(temp, rainfall, moisture)
-    st.success(f"✅ Climate Action Advice: **{result}**", icon="🌱")
-
+        st.success(f"📍 Sreemangal Weather: Temp {temp}°C, Rainfall {
