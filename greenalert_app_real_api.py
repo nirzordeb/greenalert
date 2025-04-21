@@ -29,7 +29,7 @@ st.set_page_config(page_title="GreenAlert", page_icon="🌿", layout="wide")
 st.markdown("""
     <style>
         .reportview-container {
-            background-image: url("https://raw.githubusercontent.com/your-username/your-repository-name/main/background.jpg");
+            background-image: url("https://github.com/nirzordeb/greenalert/blob/main/green_bg.jpg");
             background-size: cover;
             background-position: center;
             padding: 20px;
