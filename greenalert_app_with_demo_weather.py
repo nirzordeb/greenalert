@@ -41,36 +41,8 @@ if st.button("🧠 Get AI Advice"):
     st.success(f"✅ Climate Action Advice: **{result}**")
 
 
-import streamlit as st
-import requests
 
-# === SETTINGS ===
-API_KEY = "45a639fc080aea68034627c083e5b60b"
-LAT = 24.3083   # Sreemangal latitude
-LON = 91.7296   # Sreemangal longitude
-
-# === STYLING ===
-st.set_page_config(page_title="GreenAlert 🌿", layout="centered")
-
-st.markdown("""
-    <style>
-    .main {
-        background-image: url('https://i.ibb.co/DkgM1w5/green-bg.jpg');
-        background-size: cover;
-        padding: 2rem;
-        border-radius: 10px;
-        color: white;
-    }
-    h1 {
-        color: #ffffff;
-        text-align: center;
-    }
-    .stButton>button {
-        background-color: #4CAF50;
-        color: white;
-    }
-    </style>
-""", unsafe_allow_html=True)
+ 
 
 # === UI START ===
 st.title("🌿 GreenAlert")
