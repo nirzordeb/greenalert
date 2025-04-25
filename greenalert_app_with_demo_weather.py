@@ -39,3 +39,81 @@ if st.button("🌐 Fetch Real-Time Weather (Demo)"):
 if st.button("🧠 Get AI Advice"):
     result = predict_action(temp, rainfall, moisture)
     st.success(f"✅ Climate Action Advice: **{result}**")
+
+
+import streamlit as st
+import requests
+
+# === SETTINGS ===
+API_KEY = "45a639fc080aea68034627c083e5b60b"
+LAT = 24.3083   # Sreemangal latitude
+LON = 91.7296   # Sreemangal longitude
+
+# === STYLING ===
+st.set_page_config(page_title="GreenAlert 🌿", layout="centered")
+
+st.markdown("""
+    <style>
+    .main {
+        background-image: url('https://i.ibb.co/DkgM1w5/green-bg.jpg');
+        background-size: cover;
+        padding: 2rem;
+        border-radius: 10px;
+        color: white;
+    }
+    h1 {
+        color: #ffffff;
+        text-align: center;
+    }
+    .stButton>button {
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# === UI START ===
+st.title("🌿 GreenAlert")
+st.subheader("Smart Weather Insights for Farmers of Sreemangal")
+
+st.markdown("---")
+
+def get_weather():
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={LAT}&lon={LON}&appid={API_KEY}&units=metric"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return {
+            "temp": data["main"]["temp"],
+            "humidity": data["main"]["humidity"],
+            "weather": data["weather"][0]["description"].title(),
+            "rain": data.get("rain", {}).get("1h", 0),
+            "wind": data["wind"]["speed"]
+        }
+    else:
+        return None
+
+# === FETCH AND SHOW ===
+if st.button("📡 Get Live Weather"):
+    weather = get_weather()
+    if weather:
+        st.success("✅ Data fetched successfully!")
+        st.metric("🌡️ Temperature", f"{weather['temp']} °C")
+        st.metric("💧 Humidity", f"{weather['humidity']} %")
+        st.metric("☁️ Condition", weather['weather'])
+        st.metric("🌬️ Wind Speed", f"{weather['wind']} m/s")
+        st.metric("🌧️ Rainfall (1h)", f"{weather['rain']} mm")
+
+        # Sample AI-like logic
+        if weather['rain'] > 5:
+            st.warning("⚠️ Heavy rainfall detected. Avoid irrigation today.")
+        elif weather['temp'] > 35:
+            st.info("🌞 It's hot outside. Consider shading young crops.")
+        else:
+            st.success("🌱 Conditions are ideal for most crops.")
+    else:
+        st.error("⚠️ Could not fetch weather data. Check your API key or connection.")
+
+st.markdown("---")
+st.caption("🚀 Powered by Streamlit + OpenWeatherMap | Built with ❤️ by Nirzor & Rudroneel")
+
