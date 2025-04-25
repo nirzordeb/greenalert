@@ -44,11 +44,7 @@ if st.button("🧠 Get AI Advice"):
 
  
 
-# === UI START ===
-st.title("🌿 GreenAlert")
-st.subheader("Smart Weather Insights for Farmers of Sreemangal")
 
-st.markdown("---")
 
 def get_weather():
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={LAT}&lon={LON}&appid={API_KEY}&units=metric"
